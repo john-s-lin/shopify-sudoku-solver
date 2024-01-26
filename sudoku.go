@@ -1,5 +1,10 @@
 package main
 
+import (
+	"fmt"
+	"time"
+)
+
 const (
 	Shape = 9
 	Grid  = 3
@@ -150,11 +155,11 @@ func getGridAtRowCol(board [][]int, row, col int) []int {
 	return grid
 }
 
-// func printMatrix(board [][]int) {
-// 	for _, row := range board {
-// 		fmt.Println(row)
-// 	}
-// }
+func printMatrix(board [][]int) {
+	for _, row := range board {
+		fmt.Println(row)
+	}
+}
 
 // Set helper functions
 
@@ -199,4 +204,26 @@ func setUnion(setA, setB map[int]bool) map[int]bool {
 		setUnion[k] = true
 	}
 	return setUnion
+}
+
+func main() {
+	input := [][]int{
+		{5, 3, 0, 0, 7, 0, 0, 0, 0},
+		{6, 0, 0, 1, 9, 5, 0, 0, 0},
+		{0, 9, 8, 0, 0, 0, 0, 6, 0},
+		{8, 0, 0, 0, 6, 0, 0, 0, 3},
+		{4, 0, 0, 8, 0, 3, 0, 0, 1},
+		{7, 0, 0, 0, 2, 0, 0, 0, 6},
+		{0, 6, 0, 0, 0, 0, 2, 8, 0},
+		{0, 0, 0, 4, 1, 9, 0, 0, 5},
+		{0, 0, 0, 0, 8, 0, 0, 7, 9},
+	}
+
+	startTime := time.Now()
+	output := SolveSudoku(input)
+	endTime := time.Now()
+
+	executionTime := endTime.Sub(startTime)
+	printMatrix(output)
+	fmt.Printf("Execution time: %v\n", executionTime)
 }
